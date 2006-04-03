@@ -1,13 +1,13 @@
 Summary:	GNU-EFI - building EFI applications using the GNU toolchain
 Summary(pl):	GNU-EFI - tworzenie aplikacji EFI przy u¿yciu narzêdzi GNU
 Name:		gnu-efi
-Version:	3.0a
-Release:	2
+Version:	3.0c
+Release:	1
 # efilib is on Intel's BSD-like license, HP's glue code is GPL'd
 License:	GPL v2+, portions on Intel's BSD-like license (see README.*)
 Group:		Development/Libraries
 Source0:	ftp://ftp.hpl.hp.com/pub/linux-ia64/%{name}-%{version}.tar.gz
-# Source0-md5:	0f613e693cbc3f35ff1863ac23954baf
+# Source0-md5:	823e5f04d1c0a7b88831f91fbf12d470
 BuildRequires:	binutils >= 2.11
 BuildRequires:	gcc >= 5:3.0
 Requires:	binutils >= 2.11
