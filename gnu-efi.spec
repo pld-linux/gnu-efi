@@ -1,5 +1,5 @@
 Summary:	GNU-EFI - building EFI applications using the GNU toolchain
-Summary(pl):	GNU-EFI - tworzenie aplikacji EFI przy u¿yciu narzêdzi GNU
+Summary(pl.UTF-8):   GNU-EFI - tworzenie aplikacji EFI przy uÅ¼yciu narzÄ™dzi GNU
 Name:		gnu-efi
 Version:	3.0c
 Release:	1
@@ -21,9 +21,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 GNU-EFI development environment allows to create EFI applications for
 IA-64 and x86 platforms using the GNU toolchain.
 
-%description -l pl
-¦rodowisko programistyczne GNU-EFI umo¿liwia tworzenie aplikacji EFI
-dla platform IA-64 i x86 przy u¿yciu narzêdzi GNU.
+%description -l pl.UTF-8
+Åšrodowisko programistyczne GNU-EFI umoÅ¼liwia tworzenie aplikacji EFI
+dla platform IA-64 i x86 przy uÅ¼yciu narzÄ™dzi GNU.
 
 %prep
 %setup -q
