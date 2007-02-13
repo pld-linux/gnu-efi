@@ -1,5 +1,5 @@
 Summary:	GNU-EFI - building EFI applications using the GNU toolchain
-Summary(pl.UTF-8):   GNU-EFI - tworzenie aplikacji EFI przy użyciu narzędzi GNU
+Summary(pl.UTF-8):	GNU-EFI - tworzenie aplikacji EFI przy użyciu narzędzi GNU
 Name:		gnu-efi
 Version:	3.0c
 Release:	1
