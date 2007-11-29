@@ -11,9 +11,9 @@ Source0:	http://dl.sourceforge.net/gnu-efi/%{name}-%{version}.tar.gz
 # Source0-md5:	29013d3cd15009942fb855ba3e1a8096
 URL:		http://gnu-efi.sourceforge.net/
 BuildRequires:	binutils >= 2.17.50.0.14
-BuildRequires:	gcc >= 5:3.2
+BuildRequires:	gcc >= 6:4.1.1
 Requires:	binutils >= 2.17.50.0.14
-Requires:	gcc >= 5:3.2
+Requires:	gcc >= 6:4.1.1
 ExclusiveArch:	%{ix86} %{x8664} ia64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
