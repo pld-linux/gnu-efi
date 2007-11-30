@@ -31,15 +31,26 @@ dla platform IA-64 i x86 przy użyciu narzędzi GNU.
 %setup -q
 
 %build
-%{__make} \
+%ifarch %{x8664}
+WRAP="-DEFI_FUNCTION_WRAPPER"
+%else
+WRAP=
+%endif
+%{__make} -j1 \
+	ARCH="%{_target_base_arch}" \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -fpic -Wall -fshort-wchar"
+	CFLAGS="%{rpmcflags} -fpic -Wall -fshort-wchar $WRAP" \
+	OBJCOPY=objcopy
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	INSTALLROOT=$RPM_BUILD_ROOT%{_prefix}
+
+%if "%{_lib}" != "lib"
+	mv -f $RPM_BUILD_ROOT%{_prefix}/{lib,%{_lib}}
+%endif
 
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a apps/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
@@ -50,7 +61,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc ChangeLog README.*
-%{_libdir}/lib*efi.a
+%{_libdir}/libefi.a
+%{_libdir}/libgnuefi.a
 %{_libdir}/crt0-efi-*.o
 %{_libdir}/elf_*_efi.lds
 %{_includedir}/efi
