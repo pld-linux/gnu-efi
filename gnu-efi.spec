@@ -2,13 +2,13 @@ Summary:	GNU-EFI - building EFI applications using the GNU toolchain
 Summary(pl.UTF-8):	GNU-EFI - tworzenie aplikacji EFI przy użyciu narzędzi GNU
 Name:		gnu-efi
 # NOTE: don't use 3.1, it doesn't support EFI x86_64
-Version:	3.0d
-Release:	2
+Version:	3.0e2
+Release:	1
 # efilib is on Intel's BSD-like license, HP's glue code is GPL'd
 License:	GPL v2+, portions on Intel's BSD-like license (see README.*)
 Group:		Development/Libraries
 Source0:	http://dl.sourceforge.net/gnu-efi/%{name}-%{version}.tar.gz
-# Source0-md5:	29013d3cd15009942fb855ba3e1a8096
+# Source0-md5:	e9a55cc2a1036039e13b5823f3d55b0c
 URL:		http://gnu-efi.sourceforge.net/
 BuildRequires:	binutils >= 3:2.17.50.0.14
 BuildRequires:	gcc >= 6:4.1.1
@@ -28,18 +28,22 @@ IA-64 and x86 platforms using the GNU toolchain.
 dla platform IA-64 i x86 przy użyciu narzędzi GNU.
 
 %prep
-%setup -q
+%setup -q -n %{name}-3.0
 
 %build
 %ifarch %{x8664}
-WRAP="-DEFI_FUNCTION_WRAPPER"
+CFADD=" -DEFI_FUNCTION_WRAPPER -mno-red-zone"
 %else
-WRAP=
+%ifarch ia64
+CFADD=" -mfixed-range=f32-f127"
+%else
+CFADD=
+%endif
 %endif
 %{__make} -j1 \
 	ARCH=$(echo %{_target_base_arch} | sed -e 's/i386/ia32/') \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -fpic -Wall -fshort-wchar $WRAP" \
+	CFLAGS="%{rpmcflags} -fpic -Wall -fshort-wchar -fno-strict-aliasing -fno-merge-constants$CFADD" \
 	OBJCOPY=objcopy
 
 %install
