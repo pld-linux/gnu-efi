@@ -2,13 +2,13 @@ Summary:	GNU-EFI - building EFI applications using the GNU toolchain
 Summary(pl.UTF-8):	GNU-EFI - tworzenie aplikacji EFI przy użyciu narzędzi GNU
 Name:		gnu-efi
 # NOTE: don't use 3.1, it doesn't support EFI x86_64
-Version:	3.0e2
+Version:	3.0j
 Release:	1
 # efilib is on Intel's BSD-like license, HP's glue code is GPL'd
 License:	GPL v2+, portions on Intel's BSD-like license (see README.*)
 Group:		Development/Libraries
-Source0:	http://dl.sourceforge.net/gnu-efi/%{name}-%{version}.tar.gz
-# Source0-md5:	e9a55cc2a1036039e13b5823f3d55b0c
+Source0:	http://downloads.sourceforge.net/gnu-efi/%{name}_%{version}.orig.tar.gz
+# Source0-md5:	cf8f864d50470d0b4904947c280dabaf
 URL:		http://gnu-efi.sourceforge.net/
 BuildRequires:	binutils >= 3:2.17.50.0.14
 BuildRequires:	gcc >= 6:4.1.1
@@ -28,7 +28,7 @@ IA-64 and x86 platforms using the GNU toolchain.
 dla platform IA-64 i x86 przy użyciu narzędzi GNU.
 
 %prep
-%setup -q -n %{name}-3.0
+%setup -q
 
 %build
 %ifarch %{x8664}
@@ -43,7 +43,7 @@ CFADD=
 %{__make} -j1 \
 	ARCH=$(echo %{_target_base_arch} | sed -e 's/i386/ia32/') \
 	CC="%{__cc}" \
-	CFLAGS="%{rpmcflags} -fpic -Wall -fshort-wchar -fno-strict-aliasing -fno-merge-constants$CFADD" \
+	CFLAGS="%{rpmcflags} -fpic -Wall -fshort-wchar -fno-strict-aliasing -fno-merge-constants -fno-stack-protector$CFADD" \
 	OBJCOPY=objcopy
 
 %install
