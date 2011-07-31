@@ -4,8 +4,8 @@ Name:		gnu-efi
 # NOTE: don't use 3.1, it doesn't support EFI x86_64
 Version:	3.0l
 Release:	1
-# efilib is on Intel's BSD-like license, HP's glue code is GPL'd
-License:	GPL v2+, portions on Intel's BSD-like license (see README.*)
+# Intel and HP's BSD-like license, except setjmp code coming from GRUB
+License:	GPL v2+ (setjmp code), BSD-like (all the rest)
 Group:		Development/Libraries
 Source0:	http://downloads.sourceforge.net/gnu-efi/%{name}_%{version}.orig.tar.gz
 # Source0-md5:	fe9db068d0615a5df0d2afef546f408f
