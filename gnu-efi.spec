@@ -2,14 +2,13 @@ Summary:	GNU-EFI - building EFI applications using the GNU toolchain
 Summary(pl.UTF-8):	GNU-EFI - tworzenie aplikacji EFI przy użyciu narzędzi GNU
 Name:		gnu-efi
 # NOTE: don't use 3.1, it doesn't support EFI x86_64
-Version:	3.0l
+Version:	3.0m
 Release:	1
 # Intel and HP's BSD-like license, except setjmp code coming from GRUB
 License:	GPL v2+ (setjmp code), BSD-like (all the rest)
 Group:		Development/Libraries
 Source0:	http://downloads.sourceforge.net/gnu-efi/%{name}_%{version}.orig.tar.gz
-# Source0-md5:	fe9db068d0615a5df0d2afef546f408f
-Patch0:		%{name}-pciio.patch
+# Source0-md5:	d0a21125aee56c0c7291ad260e916cb3
 URL:		http://gnu-efi.sourceforge.net/
 BuildRequires:	binutils >= 3:2.17.50.0.14
 BuildRequires:	gcc >= 6:4.1.1
@@ -30,7 +29,6 @@ dla platform IA-64 i x86 przy użyciu narzędzi GNU.
 
 %prep
 %setup -q -n %{name}-3.0
-%patch0 -p1
 
 %build
 %ifarch %{x8664}
