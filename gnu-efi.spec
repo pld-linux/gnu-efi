@@ -2,21 +2,20 @@ Summary:	GNU-EFI - building EFI applications using the GNU toolchain
 Summary(pl.UTF-8):	GNU-EFI - tworzenie aplikacji EFI przy użyciu narzędzi GNU
 Name:		gnu-efi
 # NOTE: don't use early 3.1, it doesn't support EFI x86_64
-Version:	3.0w
+Version:	3.0.2
 Release:	1
+Epoch:		1
 # Intel and HP's BSD-like license, except setjmp code coming from GRUB
 License:	BSD-like
 Group:		Development/Libraries
-Source0:	http://downloads.sourceforge.net/gnu-efi/%{name}_%{version}.orig.tar.gz
-# Source0-md5:	36d1c5e7b6edd4733700aaf749d9b80c
-Patch0:		%{name}-make.patch
+Source0:	http://downloads.sourceforge.net/gnu-efi/%{name}-%{version}.tar.bz2
+# Source0-md5:	a9db2cabc01a2674715bd6aea2911f01
 URL:		http://gnu-efi.sourceforge.net/
 BuildRequires:	binutils >= 3:2.17.50.0.14
 BuildRequires:	gcc >= 6:4.1.1
 Requires:	binutils >= 3:2.17.50.0.14
 Requires:	gcc >= 6:4.1.1
-# FIXME: arm[64] or aarch64? (only 64-bit ARM supported in this version; git supports 32-bit too)
-ExclusiveArch:	%{ix86} %{x8664} arm ia64
+ExclusiveArch:	%{ix86} %{x8664} arm aarch64 ia64
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		specflags_ia64	-frename-registers
@@ -32,8 +31,7 @@ IA-64 and x86 platforms using the GNU toolchain.
 dla platform IA-64 i x86 przy użyciu narzędzi GNU.
 
 %prep
-%setup -q -n %{name}-3.0
-%patch0 -p1
+%setup -q
 
 %build
 CFLAGS="%{rpmcflags}" \
