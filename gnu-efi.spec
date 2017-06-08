@@ -3,7 +3,7 @@ Summary(pl.UTF-8):	GNU-EFI - tworzenie aplikacji EFI przy użyciu narzędzi GNU
 Name:		gnu-efi
 # NOTE: don't use early 3.1, it doesn't support EFI x86_64
 Version:	3.0.5
-Release:	1
+Release:	2
 Epoch:		1
 # Intel and HP's BSD-like license, except setjmp code coming from GRUB
 License:	BSD-like
@@ -36,13 +36,13 @@ ARCHFLAGS=
 %ifarch ia64
 ARCHFLAGS=-frename-registers
 %endif
-%ifarch x32
-# use x86_64 EFI ABI
-ARCHFLAGS=-m64
-%endif
+# on x32: use x86_64 EFI ABI
 CFLAGS="%{rpmcflags} $ARCHFLAGS" \
 %{__make} -j1 \
 	ARCH=%{efi_arch} \
+%ifarch x32
+	ARCH3264=-m64 \
+%endif
 	CC="%{__cc}" \
 	OBJCOPY=objcopy
 
