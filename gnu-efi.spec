@@ -20,6 +20,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		efi_arch	%(echo %{_target_base_arch} | sed -e 's/i386/ia32/')
 
+# no native binaries, only EFI code packaged
+%define		_enable_debug_packages	0
+
 %description
 GNU-EFI development environment allows to create EFI applications for
 IA-64, x86, ARM and MIPS platforms using the GNU toolchain.
