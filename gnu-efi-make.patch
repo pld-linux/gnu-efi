@@ -1,5 +1,5 @@
---- gnu-efi-3.0.15/lib/Makefile.orig	2023-04-01 20:48:36.167083944 +0200
-+++ gnu-efi-3.0.15/lib/Makefile	2023-04-01 20:48:38.843766575 +0200
+--- gnu-efi-3.0.17/lib/Makefile.orig	2024-02-10 20:12:40.581584850 +0100
++++ gnu-efi-3.0.17/lib/Makefile	2024-02-10 20:15:18.440729653 +0100
 @@ -68,13 +68,12 @@ SUBDIRS = ia32 x86_64 ia64 aarch64 arm m
  
  LIBDIRINSTALL = $(INSTALLROOT)$(LIBDIR)
@@ -9,9 +9,9 @@
  
 -.PHONY: libsubdirs
 -libsubdirs:
--	for sdir in $(SUBDIRS); do mkdir -p $$sdir; done
+-	@set -e ; for sdir in $(SUBDIRS); do mkdir -p $$sdir; done
 +.libsubdirs:
-+	for sdir in $(SUBDIRS); do mkdir -p $$sdir; done && touch .libsubdirs
++	@set -e ; for sdir in $(SUBDIRS); do mkdir -p $$sdir; done && touch .libsubdirs
  
 -$(OBJS): libsubdirs
 +$(OBJS): .libsubdirs

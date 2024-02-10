@@ -2,14 +2,14 @@ Summary:	GNU-EFI - building EFI applications using the GNU toolchain
 Summary(pl.UTF-8):	GNU-EFI - tworzenie aplikacji EFI przy użyciu narzędzi GNU
 Name:		gnu-efi
 # NOTE: don't use early 3.1, it doesn't support EFI x86_64
-Version:	3.0.15
-Release:	2
+Version:	3.0.17
+Release:	1
 Epoch:		1
 # Intel and HP's BSD-like license, except setjmp code coming from GRUB
 License:	BSD-like
 Group:		Development/Libraries
 Source0:	https://downloads.sourceforge.net/gnu-efi/%{name}-%{version}.tar.bz2
-# Source0-md5:	192d94e995ddd4ebdce4903adfd06039
+# Source0-md5:	832496719182e7d6a4b12bc7c0b534d2
 Patch0:		%{name}-make.patch
 URL:		https://sourceforge.net/projects/gnu-efi/
 BuildRequires:	binutils >= 3:2.17.50.0.14
@@ -63,6 +63,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a apps/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+# compiled example apps
+%{__rm} -r $RPM_BUILD_ROOT%{_libdir}/gnuefi/apps
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -74,4 +77,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/crt0-efi-*.o
 %{_libdir}/elf_*_efi.lds
 %{_includedir}/efi
+%{_pkgconfigdir}/gnu-efi.pc
 %{_examplesdir}/%{name}-%{version}
