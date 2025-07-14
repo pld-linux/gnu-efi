@@ -34,7 +34,7 @@ dla platform IA-64, x86, ARM i MIPS przy użyciu narzędzi GNU.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 ARCHFLAGS=
